@@ -2,6 +2,28 @@
 import os
 import csv
 
+def exit():
+    print("Thanks, have a great day!")
+
+def view(balance):
+    print("Your current balance is $", balance)
+
+import csv
+
+def deposit(transactions_file ,balance, amount):
+    balance = balance +  amount
+    print("Deposit of $", amount, "has been recorded.")
+    with open(transactions_file, "a", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([amount])
+
+def withraw(transactions_file ,balance, amount):
+    balance = balance -  amount
+    print("withdraw of $", amount, "has been recorded.")
+    with open(transactions_file, "a", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([amount])
+
 def main():
     # Welcome the user
     print("~~~ Welcome to your terminal checkbook! ~~~")
@@ -32,7 +54,7 @@ def main():
         # Perform the user's choice
         if user_choice == "1":
             # View the current balance
-            print("Your current balance is $", balance)
+            view(balance)
 
         elif user_choice == "2":
             # Record a debit
@@ -51,10 +73,10 @@ def main():
             with open(transactions_file, "a", newline="") as f:
                 writer = csv.writer(f)
                 writer.writerow([credit_amount])
+            # deposit(transactions_file ,balance, credit_amount)
         else:
             # Exit the program
-            print("Thanks, have a great day!")
+            exit()
             break
-
 if __name__ == "__main__":
     main()
