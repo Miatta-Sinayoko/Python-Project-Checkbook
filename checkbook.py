@@ -1,4 +1,7 @@
 
+import os
+import csv
+
 def main():
     # Welcome the user
     print("~~~ Welcome to your terminal checkbook! ~~~")
@@ -36,8 +39,8 @@ def main():
             debit_amount = float(input("How much is the debit? "))
             balance -= debit_amount
             print("Debit of $", debit_amount, "has been recorded.")
-            with open(transactions_file, "a", newline="") as transactions_file:
-                writer = csv.writer(transactions_file)
+            with open(transactions_file, "a", newline="") as f:
+                writer = csv.writer(f)
                 writer.writerow([debit_amount])
 
         elif user_choice == "3":
@@ -45,8 +48,8 @@ def main():
             credit_amount = float(input("How much is the credit? "))
             balance += credit_amount
             print("Credit of $", credit_amount, "has been recorded.")
-            with open(transactions_file, "a", newline="") as transactions_file:
-                writer = csv.writer(transactions_file)
+            with open(transactions_file, "a", newline="") as f:
+                writer = csv.writer(f)
                 writer.writerow([credit_amount])
         else:
             # Exit the program
